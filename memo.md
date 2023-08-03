@@ -39,6 +39,7 @@
 ## 疑問
 - アプリケーションプロジェクト構成
 - channel
+- sync.Mutex
 - goroutine
 - context
 - ブランクimport
