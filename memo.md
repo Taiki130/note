@@ -38,6 +38,9 @@
 
 ## 疑問
 - アプリケーションプロジェクト構成
+    - https://zenn.dev/foxtail88/articles/824c5e8e0c6d82
+    - https://github.com/golang-standards/project-layout/blob/master/README_ja.md
+    - https://future-architect.github.io/articles/20200528/
 - channel
 - sync.Mutex
 - goroutine
