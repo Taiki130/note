@@ -45,3 +45,6 @@ jobs:
 ```
 
 ログは削除しよう
+
+- Sopsで暗号化して基本的にすべてTerraform・OpenTofuで構成管理する
+- そもそもsecretsを使わず、SSMで管理しOIDCで取得してくる
