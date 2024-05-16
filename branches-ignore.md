@@ -1,5 +1,5 @@
 下記のworkflowはrelease PR作成では動いてしまう
-どうやらpull_request eventの場合 branches-ignoreの対象はbase branchになるらしい（push eventも？）
+どうやらpull_request eventの場合 branches-ignoreの対象はbase branchになるらしい
 
 ```
 name: Auto Assign to PR
