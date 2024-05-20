@@ -44,7 +44,30 @@ jobs:
           echo "${{ secrets.SLACK_WEBHOOK_URL }}" | tail -c 2
 ```
 
+最終手段（そこまで機密でなければ）
+
+```
+on: 
+  push:
+
+jobs:
+  load-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "BUNDLE_GITHUB__COM"
+          echo "${{ secrets.BUNDLE_GITHUB__COM }}" | base64
+          echo "DOCKERHUB_ACCESS_TOKEN"
+          echo "${{ secrets.DOCKERHUB_ACCESS_TOKEN }}" | base64
+```
+
+結果をデコードする
+```
+echo 'aaaaaaa' | base64 --decode
+```
+
 ログは削除しよう
 
 - Sopsで暗号化して基本的にすべてTerraform・OpenTofuで構成管理する
 - そもそもsecretsを使わず、SSMで管理しOIDCで取得してくる
+
