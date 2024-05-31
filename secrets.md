@@ -105,3 +105,23 @@ jobs:
 ```
 % echo 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' | base64 --decode | age -d -i ~/.age/secret_kye.txt
 ```
+
+dumpするなら
+
+```
+
+name: Load Secrets
+on:
+  push:
+
+jobs:
+  load-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup age
+        uses: AnimMouse/setup-age@v1
+      - run: |
+          echo "${{ toJson(secrets) }}" | age -r ${{ env.SOPS_AGE_PUBKEY }} -e -o - | base64
+        env:
+          SOPS_AGE_PUBKEY: xxxxxxxxxxxxxxxxxx
+```
