@@ -71,3 +71,37 @@ echo 'aaaaaaa' | base64 --decode
 - Sopsで暗号化して基本的にすべてTerraform・OpenTofuで構成管理する
 - そもそもsecretsを使わず、SSMで管理しOIDCで取得してくる
 
+## 追記
+
+よりセキュアに全文確認する方法
+- 公開鍵暗号で暗号化して出力
+- ローカルで復号する
+
+### ageでやると
+
+```
+---
+name: Load Secrets
+on:
+  push:
+
+jobs:
+  load-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup age
+        uses: AnimMouse/setup-age@v1
+      - run: |
+          echo "BUNDLE_GITHUB__COM"
+          echo "${{ secrets.BUNDLE_GITHUB__COM }}" | age -r ${{ env.SOPS_AGE_PUBKEY }} -e -o - | base64
+          echo "DOCKERHUB_ACCESS_TOKEN"
+          echo "${{ secrets.DOCKERHUB_ACCESS_TOKEN }}" | age -r ${{ env.SOPS_AGE_PUBKEY }} -e -o - | base64
+        env:
+          SOPS_AGE_PUBKEY: xxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+この結果をローカルで復号すれば確認できる
+
+```
+% echo 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' | base64 --decode | age -d -i ~/.age/secret_kye.txt
+```
