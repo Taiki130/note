@@ -89,9 +89,8 @@ jobs:
   load-secrets:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup age
-        uses: AnimMouse/setup-age@v1
       - run: |
+          apt install age
           echo "BUNDLE_GITHUB__COM"
           echo "${{ secrets.BUNDLE_GITHUB__COM }}" | age -r ${{ env.SOPS_AGE_PUBKEY }} -e -o - | base64
           echo "DOCKERHUB_ACCESS_TOKEN"
