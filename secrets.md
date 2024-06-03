@@ -121,7 +121,7 @@ jobs:
       - name: Setup age
         uses: AnimMouse/setup-age@v1
       - run: |
-          echo "${{ toJson(secrets) }}" | age -r ${{ env.SOPS_AGE_PUBKEY }} -e -o - | base64
+          echo "${{ toJson(secrets) }}" | age -r ${{ env.AGE_PUBKEY }} -e -o - | base64
         env:
-          SOPS_AGE_PUBKEY: xxxxxxxxxxxxxxxxxx
+          AGE_PUBKEY: xxxxxxxxxxxxxxxxxx
 ```
