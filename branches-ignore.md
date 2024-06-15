@@ -1,7 +1,7 @@
 下記のworkflowはrelease PR作成では動いてしまう
 どうやらpull_request eventの場合 branches-ignoreの対象はbase branchになるらしい
 
-```
+```yml
 name: Auto Assign to PR
 
 on:
@@ -13,7 +13,7 @@ on:
 
 もし特定のhead branchを対象としてskipする場合は、下記のようにjobs.ifでskipするしかなさそう
 
-```
+```yml
 name: Auto Assign to PR
 
 on:

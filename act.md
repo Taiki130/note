@@ -1,6 +1,6 @@
 ## actにわたすpayloadを調べるには
 
-```
+```yml
 # change this to the event type you want to get the data for
 on:
   pull_request:
