@@ -1,0 +1,1 @@
+- arm64とx86でそれぞれ別のplatform上でコンテナをbuildするには
